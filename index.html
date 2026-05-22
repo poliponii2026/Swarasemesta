@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Swara Semesta Malang</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#0b0b0b;
+  color:#ffffff;
+  line-height:1.7;
+}
+
+.container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  background:#121212;
+}
+
+.poster img{
+  width:100%;
+  display:block;
+}
+
+.content{
+  padding:25px;
+}
+
+h1{
+  font-size:34px;
+  margin-bottom:15px;
+  color:#ffffff;
+}
+
+h2{
+  margin-top:35px;
+  margin-bottom:15px;
+  font-size:26px;
+  color:#ffd54f;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  padding-bottom:10px;
+}
+
+h3{
+  margin-top:25px;
+  margin-bottom:10px;
+  color:#ffffff;
+  font-size:20px;
+}
+
+p{
+  margin-bottom:15px;
+  color:#dddddd;
+}
+
+ul{
+  padding-left:20px;
+  margin-bottom:20px;
+}
+
+li{
+  margin-bottom:10px;
+  color:#dddddd;
+}
+
+.info-box{
+  background:#1c1c1c;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:30px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.info-item{
+  margin-bottom:15px;
+}
+
+.label{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#aaaaaa;
+  margin-bottom:5px;
+}
+
+.value{
+  font-size:18px;
+  font-weight:bold;
+  color:#ffffff;
+}
+
+.layout-image{
+  margin-top:35px;
+  margin-bottom:25px;
+}
+
+.layout-image img{
+  width:100%;
+  border-radius:12px;
+  display:block;
+}
+
+/* ========================= */
+/* TICKET SECTION */
+/* ========================= */
+
+.ticket-section{
+  margin-top:20px;
+}
+
+.ticket-card{
+  background:#1b1b1b;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:18px;
+  transition:0.3s;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.ticket-card::before{
+  content:'';
+  position:absolute;
+  top:-120px;
+  left:-120px;
+  width:250px;
+  height:250px;
+  background:radial-gradient(
+    rgba(255,255,255,0.12),
+    transparent 70%
+  );
+  transform:rotate(25deg);
+  animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+
+  0%{
+    transform:translateX(-200px) translateY(-100px) rotate(25deg);
+  }
+
+  100%{
+    transform:translateX(900px) translateY(400px) rotate(25deg);
+  }
+
+}
+
+.ticket-card:hover{
+  transform:translateY(-4px);
+  border-color:#ffd54f;
+  box-shadow:
+  0 0 25px rgba(255,145,0,0.35),
+  0 0 60px rgba(255,61,0,0.2);
+}
+
+.active-ticket{
+  border:2px solid #00ff88;
+  background:#202020;
+  box-shadow:0 0 20px rgba(0,255,136,0.25);
+}
+
+.ticket-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.ticket-name{
+  font-size:22px;
+  font-weight:bold;
+  color:#ffffff;
+}
+
+.ticket-type{
+  margin-top:8px;
+  color:#bbbbbb;
+  font-size:16px;
+}
+
+.ticket-price{
+  margin-top:15px;
+  font-size:30px;
+  font-weight:bold;
+  color:#ffd54f;
+}
+
+/* STATUS */
+
+.status{
+  padding:8px 16px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:bold;
+  color:#ffffff;
+}
+
+/* SOLD OUT */
+
+.status.soldout{
+  background:#ff1744;
+}
+
+.ticket-card.sold{
+  opacity:0.6;
+  cursor:not-allowed;
+}
+
+.ticket-card.sold:hover{
+  transform:none;
+  border-color:rgba(255,255,255,0.08);
+}
+
+/* HAMPIR HABIS */
+
+.status.hurry{
+  background:linear-gradient(135deg,#ff9100,#ff3d00);
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+  0%{
+    transform:scale(1);
+    box-shadow:0 0 0 0 rgba(255,145,0,0.7);
+  }
+
+  70%{
+    transform:scale(1.05);
+    box-shadow:0 0 0 12px rgba(255,145,0,0);
+  }
+
+  100%{
+    transform:scale(1);
+    box-shadow:0 0 0 0 rgba(255,145,0,0);
+  }
+
+}
+
+/* STOCK ALERT */
+
+.stock-alert{
+  margin-top:12px;
+  color:#ffb74d;
+  font-size:14px;
+  font-weight:bold;
+  animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+
+  0%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:0.5;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+  padding:30px 20px 120px;
+  color:#999999;
+  font-size:14px;
+}
+
+/* FLOATING BUTTON */
+
+.floating-button{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#00c853,#00e676);
+  color:#ffffff;
+  text-decoration:none;
+  padding:16px 28px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:bold;
+  z-index:9999;
+  min-width:280px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,0.45);
+  transition:0.3s;
+  animation:floaty 2s infinite ease-in-out;
+}
+
+.floating-button:hover{
+  transform:translateX(-50%) scale(1.04);
+}
+
+@keyframes floaty{
+
+  0%{
+    transform:translateX(-50%) translateY(0px);
+  }
+
+  50%{
+    transform:translateX(-50%) translateY(-5px);
+  }
+
+  100%{
+    transform:translateX(-50%) translateY(0px);
+  }
+
+}
+
+.floating-button.selected{
+  background:linear-gradient(135deg,#ff9100,#ff3d00);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  h1{
+    font-size:28px;
+  }
+
+  h2{
+    font-size:22px;
+  }
+
+  .ticket-name{
+    font-size:18px;
+  }
+
+  .ticket-price{
+    font-size:25px;
+  }
+
+  .content{
+    padding:20px;
+  }
+
+  .floating-button{
+    width:90%;
+    font-size:15px;
+    padding:15px 20px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<a
+href="#tickets"
+class="floating-button"
+id="floatingButton"
+>
+🎫 PILIH TIKET SEKARANG
+</a>
+
+<div class="container">
+
+<div class="poster">
+<img src="poster.png" alt="Poster Swara Semesta Malang">
+</div>
+
+<div class="content">
+
+<h1>Swara Semesta Malang</h1>
+
+<div class="info-box">
+
+<div class="info-item">
+<div class="label">Date</div>
+<div class="value">Jumat, 10 Juli 2026</div>
+</div>
+
+<div class="info-item">
+<div class="label">Location</div>
+<div class="value">Graha Cakrawala, UM Malang</div>
+</div>
+
+<div class="info-item">
+<div class="label">Instagram</div>
+<div class="value">@officialswarasemesta</div>
+</div>
+
+</div>
+
+<h2 id="tickets">Tiket</h2>
+
+<div class="ticket-section">
+
+<!-- SOLD OUT -->
+
+<div class="ticket-card sold">
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+EARLY BIRD VVIP
+</div>
+
+<div class="status soldout">
+SOLD OUT
+</div>
+
+</div>
+
+<div class="ticket-type">
+Tiket habis terjual
+</div>
+
+<div class="ticket-price">
+Rp. 749.000
+</div>
+
+</div>
+
+<div class="ticket-card sold">
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+EARLY BIRD VIP
+</div>
+
+<div class="status soldout">
+SOLD OUT
+</div>
+
+</div>
+
+<div class="ticket-type">
+Tiket habis terjual
+</div>
+
+<div class="ticket-price">
+Rp. 249.000
+</div>
+
+</div>
+
+<div class="ticket-card sold">
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+EARLY BIRD - TRIBUN A
+</div>
+
+<div class="status soldout">
+SOLD OUT
+</div>
+
+</div>
+
+<div class="ticket-type">
+Tiket habis terjual
+</div>
+
+<div class="ticket-price">
+Rp. 179.000
+</div>
+
+</div>
+
+<div class="ticket-card sold">
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+EARLY BIRD - TRIBUN B
+</div>
+
+<div class="status soldout">
+SOLD OUT
+</div>
+
+</div>
+
+<div class="ticket-type">
+Tiket habis terjual
+</div>
+
+<div class="ticket-price">
+Rp. 149.000
+</div>
+
+</div>
+
+<!-- PRESALE VVIP -->
+
+<div
+class="ticket-card"
+onclick="selectTicket(this,'PRESALE VVIP')"
+>
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+PRESALE VVIP
+</div>
+
+<div class="status hurry">
+🔥 HAMPIR HABIS
+</div>
+
+</div>
+
+<div class="ticket-type">
+(Seating)
+</div>
+
+<div class="stock-alert">
+⚡ TERSISA 7 TIKET • BURUAN SEBELUM SOLD OUT
+</div>
+
+<div class="ticket-price">
+Rp. 849.000
+</div>
+
+</div>
+
+<!-- PRESALE VIP -->
+
+<div
+class="ticket-card"
+onclick="selectTicket(this,'PRESALE VIP')"
+>
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+PRESALE VIP
+</div>
+
+<div class="status hurry">
+⚠️ SISA 25
+</div>
+
+</div>
+
+<div class="ticket-type">
+(Standing)
+</div>
+
+<div class="stock-alert">
+🚨 TINGGAL 25 TIKET • PENJUALAN MELONJAK
+</div>
+
+<div class="ticket-price">
+Rp. 350.000
+</div>
+
+</div>
+
+<!-- PRESALE TRIBUN A -->
+
+<div
+class="ticket-card"
+onclick="selectTicket(this,'PRESALE TRIBUN A')"
+>
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+PRESALE - TRIBUN A
+</div>
+
+<div class="status hurry">
+ON SALE
+</div>
+
+</div>
+
+<div class="ticket-type">
+Festival Tribune
+</div>
+
+<div class="stock-alert">
+✨ OPEN PENJUALAN PRESALE
+</div>
+
+<div class="ticket-price">
+Rp. 189.000
+</div>
+
+</div>
+
+<!-- PRESALE TRIBUN B -->
+
+<div
+class="ticket-card"
+onclick="selectTicket(this,'PRESALE TRIBUN B')"
+>
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+PRESALE - TRIBUN B
+</div>
+
+<div class="status hurry">
+ON SALE
+</div>
+
+</div>
+
+<div class="ticket-type">
+Festival Tribune
+</div>
+
+<div class="stock-alert">
+🎫 TIKET MASIH TERSEDIA
+</div>
+
+<div class="ticket-price">
+Rp. 160.000
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Swara Semesta Malang — One Night Across The Galaxy
+</div>
+
+</div>
+
+<script>
+
+const floatingButton =
+document.getElementById("floatingButton");
+
+floatingButton.addEventListener("click", function(e){
+
+if(!this.classList.contains("selected")){
+
+e.preventDefault();
+
+document.getElementById("tickets").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+});
+
+function selectTicket(element, ticketName){
+
+document.querySelectorAll('.ticket-card').forEach(card=>{
+card.classList.remove('active-ticket');
+});
+
+element.classList.add('active-ticket');
+
+floatingButton.innerHTML =
+"🎟️ BELI " + ticketName;
+
+floatingButton.classList.add("selected");
+
+floatingButton.href =
+"https://eticketdigital.github.io/FROM-SWARA-SEMESTA/";
+
+}
+
+</script>
+
+</body>
+</html>
